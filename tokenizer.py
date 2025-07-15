@@ -1,7 +1,7 @@
 def tokens(code:str):
 	result = {}
 	line_number = 0
-	word = ""
+	word = ''
 	for line in code.splitlines():
 		if line.strip() == "":
 			continue
@@ -11,10 +11,10 @@ def tokens(code:str):
 		for token in line:
 			if token == " " or token == "":
 				result[line_number].append(word)
-				word = ""
+				word = ''
 			else:
 				word += token
 		if word:
 			result[line_number].append(word)
-			word = ""
+			word = ''
 	return result

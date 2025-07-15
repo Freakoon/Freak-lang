@@ -26,9 +26,9 @@ def run(parseCode:dict):
 			print(result)
 
 code = """
-let a = 5 + 1
+let a = 55 < 5
 echo a
-let b = true
+let b = 5 + 10
 echo b
 """
 
