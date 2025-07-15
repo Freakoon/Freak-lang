@@ -1,23 +1,13 @@
-def tokens(code:str):
+import tokenizer,json
+from keywords import Keyword
+
+def parse(codeTokens):
+	keyword = Keyword()
 	result = {}
-	line_number = 0
-	word = ""
-	for line in code.splitlines():
-		line_number += 1
-		if not line_number in result:
-			result[line_number] = []
-		for token in line:
-			if token == " ":
-				if word == "":
-					pass
-				else:
-					result[line_number].append(word)
-				word = ""
-			else:
-				word += token
+	for k,v in codeTokens.items():
+		if keyword.check(v[0]):
+			if v[0] == "let":
+				result[k] = {"type":v[0],"name":v[1],"values":v[3:]}
+			elif v[0] == "echo":
+				result[k] = {"type":v[0],"values":v[1:]}
 	return result
-
-
-
-code = "let a = 5 \nlet b = 5 \n echo a + b "
-print(tokens(code))
