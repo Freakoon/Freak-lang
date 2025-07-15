@@ -25,18 +25,10 @@ def run(parseCode:dict):
 			result = eval(text, {}, vars)
 			print(result)
 
-code = """
-let a = 55 < 5
-echo a
-let b = 5 + 10
-echo b
-"""
-
+#run file or command
+#freak file.frk
+#echo "HelloWorld"
 while True:
-	a = tokenizer.tokens(code)
-	b = parser.parse(a)
-	run(b)
-	break
 	stdin = input(">>> ")
 	if stdin.startswith("freak"):
 		words = tokenizer.tokens(stdin)
