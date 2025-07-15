@@ -1,5 +1,7 @@
 let
 echo
+true
+false
 if
 else
 for

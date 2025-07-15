@@ -13,12 +13,30 @@ def run(parseCode:dict):
 		p = parseCode[key]
 		vartype = p["type"]
 		if vartype == "let":
-			vars[p["name"]] = parse_to_str(p["values"])
+			if parse_to_str(p["bool"]) == "true":
+							vars[p["name"]] = eval("True", {}, vars)
+					
+			elif parse_to_str(p["bool"]) == "false":
+							vars[p["name"]] = eval("False", {}, vars)
+			else:
+				vars[p["name"]] = eval(parse_to_str(p["values"]), {}, vars)
 		elif vartype == "echo":
 			text = parse_to_str(p["values"])
-			eval(f"print({text})",{},vars)
+			result = eval(text, {}, vars)
+			print(result)
+
+code = """
+let a = 5 + 1
+echo a
+let b = true
+echo b
+"""
 
 while True:
+	a = tokenizer.tokens(code)
+	b = parser.parse(a)
+	run(b)
+	break
 	stdin = input(">>> ")
 	if stdin.startswith("freak"):
 		words = tokenizer.tokens(stdin)
